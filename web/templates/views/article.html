@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <link rel="stylesheet" href="static/css/framework7.ios.css">
+    <link rel="stylesheet" href="static/css/framework7.ios.colors.css">
+    <link rel="stylesheet" href="static/css/my-app.css">
+  </head>
+  <body>
+    <div class="views">
+      <div class="view view-main">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left" >
+              <a href="#" class="back link" id='back'> <i class="icon icon-back color-white" id='leftback' style="transform: translate3d(0px, 0px, 0px);"></i><span>Back</span></a>
+            </div>
+            <div class="center sliding">{{article.title}}</div>
+            <div class="right"></div>
+          </div>
+        </div>
+
+        <div class="pages ">∏
+          <div data-page="article" class="page navbar-fixed toolbar-fixed">
+           
+
+
+		<div class="page-content">
+			<div class="content-block">
+			<div class="content-block-inner icyjob-articleblock">
+			{% autoescape off %}
+				{{article.content}}
+			{% endautoescape %}
+			</div>
+			</div>
+		</div>
+		<div class="toolbar">
+		  <div class="toolbar-inner">
+			<a href="{{article.url}}" class="external"  target="blank">原文</a>
+			{% if article.email %}
+			<a href="mailto:{{article.email}}" class="external">发邮件</a>
+			{% else %}
+			<a href="mailto:{{article.email}}" class="link">无邮箱</a>
+			{% endif %}
+	
+		  </div>
+		</div>
+
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <script type="text/javascript" src="static/js/framework7.js"></script>
+    <script type="text/javascript" src="static/js/my-app.js"></script>
+
+    <script type="text/template" id="myPage">
+      <div class="page" data-page="my-page">
+          <div class="page-content">
+              <p>Here comes page content</p>
+          </div>
+      </div>
+    </script>  
+
+    <script type="text/template" id="pageBar">
+      <div class="navbar">
+          <div class="navbar-inner">
+              <a href="#" class="back link"> <i class="icon icon-back" style="transform: translate3d(0px, 0px, 0px);"></i><span>Back</span></a>
+              <div class="center">My Page</div>
+          </div>
+      </div>
+    </script>
+    <script type="text/template" id="jobItem">
+                  <li class="swipeout">
+                    <div class="swipeout-content">
+                      <a href="item.html?id=11326940" data-context-name="stories.0" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">We only hire the trendiest</div>
+                            <div class="item-after"><span ></span></div>
+                                      </div>
+                          <div class="item-subtitle">danluu.com</div>
+                              <div class="item-text">269 points by profcalculus 3 hours ago</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="swipeout-actions-left">
+                          <a href="http://danluu.com/programmer-moneyball/" target="_blank" class="external"><i class="icon icon-watch"></i></a>
+                        </div>
+                  </li>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>IcyJob · I See Job</title>
+    <link rel="stylesheet" href="static/css/framework7.ios.css">
+    <link rel="stylesheet" href="static/css/framework7.ios.colors.css">
+    <link rel="stylesheet" href="static/css/my-app.css">
+  </head>
+  <body>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-reveal">
+	<div data-page="home" class="page">
+	<div class="list-block">
+	  <ul id="type-menu">	
+
+		<div class="page-content">
+              <div class="content-block-title">选择类别(全不选则不过滤)</div>
+              <div class="list-block">
+                <ul>
+
+		  <!--li>
+		      <div class="item-content">
+			<div class="item-media"><i class="icon icon-form-name"></i></div>
+			<div class="item-inner">
+			  <div class="item-input">
+			    <select id='select-jobtype'>
+			      <option value=''>全部</option>
+			      <option value='intern'>实习</option>
+			      <option value='job'>校招/社招</option>
+			    </select>
+			  </div>
+			</div>
+		      </div>
+		    <li>
+		      <label class="label-radio item-content">
+			<input type="radio" name="my-radio" value="Movies">
+			<div class="item-inner">
+			  <div class="item-title">校招</div>
+			</div>
+		      </label>
+		    </li>
+		  </li-->
+		  <li>
+		      <label class="label-radio item-content">
+			<!-- Checked by default -->
+			<input id='all' type="radio" name="icyjob-radio" value="" checked="checked">
+			<div class="item-inner">
+			  <div class="item-title">全部</div>
+			</div>
+		      </label>
+		    </li>
+		    <!-- Another radio input -->
+		    <li>
+		      <label class="label-radio item-content">
+			<input id='intern' type="radio" name="icyjob-radio" value="intern">
+			<div class="item-inner">
+			  <div class="item-title">实习</div>
+			</div>
+		      </label>
+		    </li>
+		    <li>
+		      <label class="label-radio item-content">
+			<input id='job' type="radio" name="icyjob-radio" value="job">
+			<div class="item-inner">
+			  <div class="item-title">校招/社招</div>
+			</div>
+		      </label>
+		    </li>
+		  {% for tag in tags %}
+                  <li>
+                    <label class="label-checkbox item-content">
+                      <input type="checkbox" name="ks-checkbox" value={{tag.id}} class="typecheck">
+                      <div class="item-media"><i class="icon icon-form-checkbox "></i></div>
+                      <div class="item-inner">
+			{% if not tag.tag %}
+                        <div class="item-title">其他</div>
+			{% else %}
+                        <div class="item-title">{{tag.tag}}</div>
+			{% endif %}
+                      </div>
+                    </label>
+                  </li>
+		  {% endfor %}
+
+                </ul>
+              </div>
+		</div>
+            </div>
+
+
+	  </ul>
+	</div>
+    </div>
+    <div class="views">
+      <div class="view view-main">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+		<a href="#" class="link icon-only open-panel"> <i class="icon icon-bars color-white"></i></a>
+	    </div>
+            <div class="center sliding">IcyJob</div>
+            <div class="right"></div>
+          </div>
+        </div>
+
+        <div class="pages navbar-fixed toolbar-fixed">∏
+          <div data-page="home" class="page navbar-fixed toolbar-fixed">
+            <div class="page-content infinite-scroll pull-to-refresh-content" data-ptr-distance="55">
+              <div class="list-block list-block-icyjob media-list stories-list list-block-search searchbar-found">
+		<div class="pull-to-refresh-layer">
+	          <div class="preloader"></div>
+	          <div class="pull-to-refresh-arrow"></div>
+	       </div>
+               <ul>
+
+
+		 {% for article in articles %}
+
+                  <li class="swipeout">
+                    <div class="swipeout-content">
+                      <a href="article?id={{article.id}}" data-context-name="stories.0" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">{{article.title}}</div>
+                            <div class="item-after"><span ></span></div>
+                                      </div>
+                          <div class="item-subtitle">{{article.urldomain}}</div>
+                              <div class="item-text">{{article.time}}</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="swipeout-actions-left">
+                          <a href="http://danluu.com/programmer-moneyball/" target="_blank" class="external"><i class="icon icon-watch"></i></a>
+                        </div>
+                  </li>
+ 
+		 {% endfor %}
+              
+                </ul>
+                <div class="infinite-scroll-preloader">
+                  <div class="preloader"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <script type="text/javascript" src="static/js/framework7.js"></script>
+    <script type="text/javascript" src="static/js/my-app.js"></script>
+
+    <script type="text/template7" id="myPage">
+      <div class="page" data-page="my-page">
+          <div class="page-content">
+              <p>Here comes page content</p>
+          </div>
+      </div>
+    </script>  
+
+    <script type="text/template7" id="pageBar">
+      <div class="navbar">
+          <div class="navbar-inner">
+              <a href="#" class="back link"> <i class="icon icon-back" style="transform: translate3d(0px, 0px, 0px);color: #FFFFFF;"></i><span>Back</span></a>
+              <div class="center">My Page</div>
+          </div>
+      </div>
+    </script>
+    <script type="text/template7" id="jobItem">
+                  <li id='iid' class="swipeout">
+                    <div class="swipeout-content">
+                      <a href="article?id=id_template" data-context-name="stories.0" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title"> title_template </div>
+                            <div class="item-after"><span ></span></div>
+                                      </div>
+                          <div class="item-subtitle"> domain_template </div>
+                              <div class="item-text"> time_template </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="swipeout-actions-left">
+                          <a href="http://danluu.com/programmer-moneyball/" target="_blank" class="external"><i class="icon icon-watch"></i></a>
+                        </div>
+                  </li>
+    </script>
+  </body>
+</html>
